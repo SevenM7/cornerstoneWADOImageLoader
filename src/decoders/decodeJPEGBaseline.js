@@ -9,6 +9,10 @@
     var bitsAllocated = dataSet.uint16('x00280100');
     var encodedImageFrame = cornerstoneWADOImageLoader.getEncodedImageFrame(dataSet, frame);
     var jpeg = new JpegImage();
+    
+    // Set color conversion to false, in case for YBR_FULL
+    jpeg.colorTransform = false;
+    
     jpeg.parse( encodedImageFrame );
     if(bitsAllocated === 8) {
       return jpeg.getData(width, height);
